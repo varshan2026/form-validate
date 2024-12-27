@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Validation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-image: url('./bg.jpg');
+      background-size: cover;
+      background-position: 50% 50%;
+    }
+
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      margin-top: 25px;
+    }
+
+    input {
+      width: 90%;
+      padding: 5px;
+      border: none;
+      border-bottom: 1px solid #000000;
+    }
+
+    input:focus{
+        outline: none;
+    }
+
+    input:target{
+      background-color: none;
+    }
+
+    button {
+      width: 97%;
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .errormessage {
+      color: red;
+      font-size: 12px;
+      margin-top: 5px;
+      display: none;
+    }
+
+    #imag{
+      width: 28%;
+      display: none;
+    }
+
+    @media screen and (max-width: 998px){
+      body{
+        background-image: none;
+        background-color: black;
+      }
+
+      #imag{
+        width: 70%;
+      }
+    }
+
+    #form{
+      display: block;
+      background-color: rgb(255, 255, 255);
+      padding: 45px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div id="form">
+        <form >
+            <label for="name">User Name</label>
+            <input type="text" id="name" name="name">
+            <p id="name_error" class="errormessage">*Please enter your name.</p>
+            
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email">
+            <p id="email_error" class="errormessage">*Please enter a valid email address.</p>
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password">
+            <p id="password_error" class="errormessage">*Password must be at least 6 characters long.</p>
+            
+            <button type="button" id="btn" onclick="validateForm()">Submit</button>
+          </form>
+    </div>
+  </div>
+
+<img src="./success.png" alt="png" id="imag">
+
+  <script>
+    function validateForm() {
+      
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      var name_error = document.getElementById("name_error")
+      var email_error = document.getElementById("email_error")
+      var password_error = document.getElementById("password_error")
+      var form = document.getElementById('form')
+      var imag = document.getElementById('imag')
+
+      if (name == "") {
+        name_error.style.display = "block";
+        return ;
+      }
+
+      var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+      if (!email.match(emailPattern)) {
+        email_error.style.display = "block";
+        return ;
+      }
+
+      if (password.length < 6) {
+        password_error.style.display = "block";
+        return ;
+      }
+
+      if (name != "" && email.match(emailPattern) && password.length >= 6) {
+        form.style.display = "none";  
+        imag.style.display = "block";  
+        return;  
+      }
+    }
+  </script>
+
+</body>
+</html>
