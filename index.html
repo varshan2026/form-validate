@@ -12,7 +12,7 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      background-image: url('./bg.jpg');
+      background-image: url('./bglight.jpg');
       background-size: cover;
       background-position: 50% 50%;
     }
@@ -62,7 +62,7 @@
     }
 
     #imag{
-      width: 28%;
+      width: 45%;
       display: none;
     }
 
@@ -120,6 +120,7 @@
       var password_error = document.getElementById("password_error")
       var form = document.getElementById('form')
       var imag = document.getElementById('imag')
+      var body = document.querySelector('body')
 
       if (name == "") {
         name_error.style.display = "block";
@@ -140,6 +141,7 @@
       if (name != "" && email.match(emailPattern) && password.length >= 6) {
         form.style.display = "none";  
         imag.style.display = "block";  
+        body.style.backgroundImage = "url('./bg.jpg')";
         return;  
       }
     }
